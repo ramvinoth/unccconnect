@@ -1,0 +1,17 @@
+<md-dialog class="image-holder">
+<!-- slider container -->
+<div class="container slider imgpopup">
+    <div class="pop-close" ng-click="hide()"><i class="fa fa-close"></i></div>
+    <!-- enumerate all photos -->
+    <img ng-repeat="photo in photos" class="slide img-auto" ng-show="isActive($index)" ng-src="{{photo.src}}" />
+    <!-- prev / next controls -->
+    <a class="arrow prev" href="#" ng-click="showPrev()"></a>
+    <a class="arrow next" href="#" ng-click="showNext()"></a>
+    <!-- extra navigation controls -->
+    <ul class="nav slide-preview">
+        <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
+            <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);" />
+        </li>
+    </ul>
+</div>
+</md-dialog>

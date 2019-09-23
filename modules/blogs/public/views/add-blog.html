@@ -1,0 +1,26 @@
+<md-card flex-sm="95" flex-gt-sm="90" flex-gt-md="80">
+  <md-card-content>
+    <div layout="column">
+        <div>
+          <form name="blogForm" class="" ng-submit="create(blogForm.$valid)">
+            <md-input-container>
+              <label>Title</label>
+              <input type="text" name="title" ng-model="title" placeholder="Enter Title here..." required>
+              <div ng-messages="loginForm.email.$error" ng-show="loginForm.bio.$dirty">
+                <div ng-message="required">This is required!</div>
+                <div ng-message="md-maxlength">That's too long!</div>
+                <div ng-message="minlength">That's too short!</div>
+              </div>
+            </md-input-container>  
+            <md-input-container>
+                <span>Content</span>
+                <summernote config="options" ng-model="content"></summernote>
+            </md-input-container>
+            <md-button class="md-primary md-raised">
+                Create
+            </md-button>
+          </form>
+        </div>
+    </div>
+  </md-card-content>
+</md-card>

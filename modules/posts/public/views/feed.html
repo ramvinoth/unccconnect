@@ -1,0 +1,92 @@
+<md-card flex-sm="95" flex-gt-sm="90" flex-gt-md="80">
+  <md-card-content>
+    <h2 ng-if="feedTitle" ng-bind="feedTitle"></h2>
+    <div>
+      <md-button class="md-primary md-raised" ng-click="back()" ng-if="showBack">
+        <md-inline-list-icon class="fa fa-chevron-left"></md-inline-list-icon> Back
+      </md-button>
+      <div ng-controller="StreamsPurposeCtrl" class="stream-purpose" ng-if="streamPage" layout="row">
+        <h2 ng-bind="stream.title" layout="column">...</h2>
+        <form name="streamPurposeForm" ng-submit="updateStreamPurpose(streamPurposeForm.$valid)" layout="column" flex>
+          <md-input-container ng-if="stream">
+            <input type="text" ng-model="stream.purpose">
+          </md-input-container>
+        </form>
+      </div>
+      
+      <div class="post-writer" ng-show="!noPosting">
+        <form name="postForm" ng-submit="create(postForm.$valid)" novalidate>
+          <md-input-container>
+            <label>What do you want to share?</label>
+            <textarea ng-change="checkMentions(content, '#status')" name="content" ng-model="content" id="status" cols="30" rows="2" required md-maxlength="2055" minlength="2"></textarea>
+            <div ng-messages="postForm.content.$error" ng-show="postForm.$submitted">
+              <div ng-message="required">Write your post first.</div>
+              <div ng-message="md-maxlength">That's too long!</div>
+              <div ng-message="minlength">That's too short. Write more?</div>
+            </div>
+          </md-input-container>
+          <div ng-controller="GalleryCtrl">
+            <input type="file" ng-file-select ng-accept="'image/*'" fileinput="file" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)">
+            <div class="col-md-6">
+              <img ng-src="{{filesrc}}" ng-repeat="filesrc in filesSrc" class="img-responsive preview-img" ng-show="filesrc" ng-model="filesSrc" ng-click="imagePop($event, filesSrc)"/>
+            </div>
+          </div>
+          <md-button class="md-primary md-raised">
+            Share
+          </md-button>
+          <md-button class="md-raised" ng-click="reset()" ng-if="postForm.$submitted && postForm.$invalid">
+            Cancel
+          </md-button>
+        </form>
+      </div>
+      
+      <!-- mentions search -->
+      <div class="search-results mentions-results button-listing" > <!-- ng-show="mentionsResults.length"-->
+        <md-card>
+            <md-list-item ng-repeat="item in mentionsResults">
+              <md-button ng-click="replaceName(item.username)" class="md-accent">
+                <md-item-content layout="row">
+                  <img ng-src="{{item.face || '/images/user.jpg'}}" class="face" alt="{{item.name}}">
+                  <div class="md-tile-content unspaced-headings left-text">
+                    <h3 class="md-accent">{{item.name}}</h3>
+                    <p>@{{item.username}}</p>
+                    <p>{{item.designation}}</p>
+                    <p>{{item.email}}</p>
+                  </div>
+                </md-item-content>
+              </md-button>
+            </md-list-item>
+        </md-card>
+      </div>
+
+      <div class="primaryColors feedsFilter" ng-show="!noFiltering && lastUpdated && !isTimeline">
+        <div layout="column">
+          <a class="filter" ng-click="feedsFilterEnabled = !feedsFilterEnabled" ><span class="fa fa-search"></span> Filter</a>
+          <md-input-container ng-show="feedsFilterEnabled" class="no-margin">
+            <label>Type keywords to filter...</label>
+            <input type="search" ng-model="feedsFilter" minlength="2" set-focus="feedsFilterEnabled">
+          </md-input-container>
+        </div>
+      </div>
+      <div class="post-listing">
+        <md-card ng-show="newFeedCount">
+          <md-button ng-click="updateFeed()" class="md-primary md-raised">Load New Items ({{newFeedCount}})</md-button>
+        </md-card>
+        
+        <p ng-if="!lastUpdated">Loading...</p>
+        <md-item ng-repeat="item in feed" id="{{::item._id}}">
+          <div ng-if="item.spacer" class="feed-spacer">
+            Loaded more below
+          </div>
+          <aw-feed-item></aw-feed-item>
+        </md-item>
+        
+      </div>
+      <div ng-hide="noMorePosts || !lastUpdated" layout="row">
+        <md-button flex class="md-raised" ng-click="loadMore()"><span>Load More</span></md-button>
+      </div>
+      <p ng-show="noMorePosts && feed.length" class="breathing-space secondaryColors"></p>
+
+    </div>
+  </md-card-content>
+</md-card>

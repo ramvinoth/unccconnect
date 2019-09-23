@@ -1,0 +1,10 @@
+<md-item-content class="blog-listing" ng-click="viewBlog(item._id)">
+    <div class="md-tile-left inset" hide-sm>
+        <a href="/profile/{{item.creator.username}}"><img ng-src="{{item.creator.face || '/images/user.jpg'}}" class="face" alt="{{item.creator.name}}"></a>
+    </div>
+    <div class="md-tile-content">
+      <h3>{{item.title}}</h3>
+      <h4>{{item.creator.username}}</h4>
+      <p> {{item.short_desc | htmlToPlaintext}} </p>
+    </div>
+  </md-item-content>

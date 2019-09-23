@@ -1,0 +1,51 @@
+{
+  "name": "fivetrippycuisiners",
+  "version": "0.0.1",
+  "description": "A social network for foodies like you and me",
+  "repository": "https://github.com/ramvinoth/fivetrippycuisiners",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "node index",
+    "karma": "node node_modules/karma/bin/karma start karma.conf.js",
+    "mocha": "./node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha -- ./modules/**/server/tests/**/*.js -R spec -r tools/test/mocha-req.js",
+    "test": "npm run mocha  && npm run karma",
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "author": "Ram Vinoth",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.0",
+    "aws-sdk": "^2.207.0",
+    "body-parser": "^1.11.0",
+    "bower": "^1.3.12",
+    "dotenv": "^5.0.1",
+    "ejs": "^2.3.1",
+    "express": "^4.11.2",
+    "jsonwebtoken": "^8.2.0",
+    "lodash": "^4.17.5",
+    "mongoose": "^5.0.9",
+    "morgan": "^1.5.1",
+    "multer": "^1.3.0",
+    "node-gyp": "^3.6.2",
+    "node-sass": "^4.8.1",
+    "nodemailer": "^4.6.2",
+    "phantomjs-prebuilt": "^2.1.16",
+    "socket.io": "^1.3.5"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "expect": "^22.4.0",
+    "gulp": "^3.8.10",
+    "gulp-concat": "^2.5.2",
+    "gulp-minify-css": "^1.1.3",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "istanbul": "^0.4.5",
+    "karma": "^2.0.0",
+    "karma-coverage": "^1.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "mocha": "^5.0.4"
+  }
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html ng-app="AtWork">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-99087345-4"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-99087345-4');
+        </script>
+        <!--
+        <meta property="og:title" content="{{ngMeta.title}}">
+        <meta name="description"  property="og:description" content="{{ngMeta.description}}">
+        <meta property="og:image" content="http://www.tamizhans.com/images/anbendru_bharathiaar.png">
+        <meta property="og:url" content="http://www.tamizhans.com/">
+        
+        <meta property="og:title" content="First ever social network for Tamizhans">
+        <meta property="og:description" content="Taking TN to the next level">
+        -->
+        <meta name="fragment" content="!">
+        <link rel="SHORTCUT ICON" href="/images/tamizhans.ico" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='/bower_components/angular-bootstrap/ui-bootstrap-csp.css'>
+        <link rel='stylesheet' href='/bower_components/summernote/dist/summernote.css'>
+        
+        <base href="/"></base>
+        <title ng-bind="systemSettings ? systemSettings.workplace : 'Tamizha'"></title>
+    </head>
+    <body layout="row" ng-controller="AppCtrl">
+      <!-- new deployment: 25, May, 2015!! -->
+      <div class="preloader" ng-if="!appReady">
+        <div class="preloader-content">
+          <img src="images/logo.png" width="300">
+          <h1>Tamizha</h1>
+          <p>Hold on, tightly...</p>
+          <p>Taking TN to the next level.</p>
+        </div>
+      </div>
+      <md-sidenav layout="column" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="showSideNav && $mdMedia('gt-sm')" ng-if="isLoggedIn">
+        <md-toolbar layout="row">
+          <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" ng-if="isLoggedIn">
+            <span class="visuallyhidden">Menu</span>
+          </button>
+          <span><img src="images/logo.png" width="50px" height="auto"/></span>
+          <h1>{{systemSettings ? systemSettings.workplace : 'Tamizha'}}</h1>
+        </md-toolbar>
+        <div class="md-padding sidebar-list" layout-padding>
+            <div ng-include="'/system/public/views/search.html'"></div>
+            
+            <!-- Load user chats -->
+            <div ng-include="'/modules/chats/views/chatsList.html'"></div>
+
+            <!-- Load user streams -->
+            <div ng-include="'/modules/streams/views/streamsList.html'"></div>
+
+            <!-- Load user Blogs -->
+            <md-button flex class="btn left-text no-case md-old-style no-bold md-primary ng-scope" href="/blog">Blogs</md-button>
+        </div>
+
+      </md-sidenav>
+      <div layout="column" flex>
+
+          <md-toolbar layout="column">
+            <div class="md-toolbar-tools">
+                <span class="badge menu-badge" hide-gt-sm ng-if="badges && badges.messageBadge">{{ badges.messageBadge }}</span>
+                <button ng-click="toggleSidenav('left')" class="menuBtn" ng-if="isLoggedIn">
+                  <span class="visuallyhidden">Menu</span>
+                </button>
+                
+                <md-button class="md-old-style" ng-if="isLoggedIn" ng-click="goHome($event)" title="Home" aria-label="Home">
+                  <md-inline-list-icon class="fa fa-globe"></md-inline-list-icon>
+                </md-button>
+                <span hide-sm ng-if="!isLoggedIn">{{systemSettings ? systemSettings.workplace : 'Tamizhaa'}}</span>
+                <span hide-sm hide-md class="tiny" flex>&nbsp; {{barTitle}}</span>
+                <span flex hide-md></span>
+                <md-button class="md-old-style" ng-if="isLoggedIn && (user.roles.indexOf('admin') !== -1)" href="/settings" title="Settings" aria-label="Settings">
+                  <md-inline-list-icon class="fa fa-cog"></md-inline-list-icon>
+                </md-button>
+                <md-button class="md-old-style" ng-if="isLoggedIn" title="Invite" aria-label="Invite" ng-click="inviteOthers($event)" ng-controller="InviteCtrl">
+                  <md-inline-list-icon class="fa fa-envelope"></md-inline-list-icon>
+                </md-button>
+                <div ng-controller="notificationsCtrl">
+                  <md-button class="md-old-style" ng-if="isLoggedIn" ng-click="showUserNotifications($event)" title="Alerts" aria-label="Alerts">
+                    <md-inline-list-icon class="fa fa-bell notification-count"> <span ng-if="notificationCount">{{notificationCount}} </span></md-inline-list-icon>
+                  </md-button>
+                  
+                  <div class="notifications md-whiteframe-z1" ng-if="isLoggedIn && notificationShown">
+                    <md-list>
+                      <!-- notif loop start -->
+                      <md-list-item class="item" ng-repeat="item in items">
+                        <md-button href="{{item.href}}" ng-click="markRead(item)" layout-wrap>
+                          <md-item-content layout="row">
+                              <img ng-src="{{item.actor.face || '/images/user.jpg'}}" class="face" alt="{{item.actor.name}}">
+                              <div>
+                                <p>{{::item.display.text}}</p>
+                                <span class="mute">{{::item.created | date:'medium'}}</span>
+                              </div>
+                          </md-item-content>
+                        </md-button>
+                      </md-item>
+                      <!-- notif loop -->
+
+                      <!-- no notif start -->
+                      <md-item class="item" ng-if="!items.length">
+                        <md-button ng-click="showUserNotifications()">
+                          <md-item-content>
+                              <div class="md-tile-content">
+                                <p>No unread notifications.</p>
+                              </div>
+                          </md-item-content>
+                        </md-button>
+                      </md-item>
+                      <!-- no notif -->
+                    </md-list>
+                  </div>
+                </div>
+
+                <md-button class="user-profile-btn md-old-style" ng-if="isLoggedIn" ng-click="showUserActions($event)" title="Profile" aria-label="Profile">
+                  <md-inline-list-icon class="fa fa-user"></md-inline-list-icon>
+                </md-button>
+
+            </div>
+          </md-toolbar>
+
+
+          <div layout="column" flex id="content">
+            
+            <md-content flex class="md-padding greyed" md-scroll-y>
+              <div class="main-view" ng-view layout="row" layout-align="center" layout-fill></div>
+            </md-content>
+          </div>
+          
+      </div>
+
+      <!-- Main angular file -->
+      <script src="/bower_components/socket.io-client/socket.io.js"></script>
+      <script src="/dist/libs.js"></script>
+      <script src="/dist/scripts.js"></script>
+      
+      <script src='/bower_components/popper.js/dist/umd/popper.min.js'></script>
+      <script src='/bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+      <script src='/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js'></script>
+      <script src='/bower_components/satellizer/dist/satellizer.js'></script>
+
+      <script src='/bower_components/summernote/dist/summernote.min.js'></script>
+      <script src='/bower_components/angular-summernote/dist/angular-summernote.min.js'></script>
+      <script src='/bower_components/ngMeta/dist/ngMeta.min.js'></script>
+      
+      <!-- Non-critical CSS -->
+      <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
+      <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.min.css">
+    </body>
+</html>
+
