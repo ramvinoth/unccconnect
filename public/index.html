@@ -31,16 +31,15 @@
         <link rel='stylesheet' href='/bower_components/summernote/dist/summernote.css'>
         
         <base href="/"></base>
-        <title ng-bind="systemSettings ? systemSettings.workplace : 'Tamizha'"></title>
+        <title ng-bind="systemSettings ? systemSettings.workplace : 'UNCC'">UNCC Connect</title>
     </head>
     <body layout="row" ng-controller="AppCtrl">
       <!-- new deployment: 25, May, 2015!! -->
       <div class="preloader" ng-if="!appReady">
         <div class="preloader-content">
           <img src="images/logo.png" width="300">
-          <h1>Tamizha</h1>
+          <h1>Niners!</h1>
           <p>Hold on, tightly...</p>
-          <p>Taking TN to the next level.</p>
         </div>
       </div>
       <md-sidenav layout="column" class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="showSideNav && $mdMedia('gt-sm')" ng-if="isLoggedIn">
@@ -48,8 +47,8 @@
           <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" ng-if="isLoggedIn">
             <span class="visuallyhidden">Menu</span>
           </button>
-          <span><img src="images/logo.png" width="50px" height="auto"/></span>
-          <h1>{{systemSettings ? systemSettings.workplace : 'Tamizha'}}</h1>
+          <span><img src="images/uncc_49.png" width="50px" height="auto"/></span>
+          <h1>{{systemSettings ? systemSettings.workplace : 'UNCC Connect'}}</h1>
         </md-toolbar>
         <div class="md-padding sidebar-list" layout-padding>
             <div ng-include="'/system/public/views/search.html'"></div>
