@@ -222,10 +222,10 @@ angular.module('atwork.posts')
               var singleRecord = timelineData.res.record;
               MetaTagsService.setTags({
                 // General SEO
-                'title': "Tamizhans Social Network",
+                'title': "UNCC Connect",
                 // OpenGraph
                 'og:type': 'Post',
-                'og:url': 'http://www.tamizhans.com/post/'+singleRecord._id,
+                'og:url': 'https://unccconnect.herokuapp.com/post/'+singleRecord._id,
                 'og:title': singleRecord.stream.title,
                 'og:description': singleRecord.content,
                 //'og:image': singleRecord.image,

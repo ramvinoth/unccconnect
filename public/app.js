@@ -14,8 +14,8 @@ var app = angular.module('AtWork', [
   'satellizer',
 ]).config(['$qProvider','$routeProvider','ngMetaProvider', '$authProvider', function ($qProvider, $routeProvider, ngMetaProvider, $authProvider) {
   $qProvider.errorOnUnhandledRejections(false);
-  ngMetaProvider.setDefaultTitle('First ever social network for Tamizhans');
-  ngMetaProvider.setDefaultTag('description', 'Taking TN to the next level');
+  ngMetaProvider.setDefaultTitle('First ever social network for UNCC');
+  ngMetaProvider.setDefaultTag('description', 'Together we make Charlotte Thrive');
   $authProvider.facebook({
     clientId: '183663679128594',
     url: '/users/auth/facebook',
@@ -79,13 +79,13 @@ var app = angular.module('AtWork', [
   ngMeta.init();
   MetaTagsService.setDefaultTags({
     // General SEO
-    'og:title': 'First ever social network for Tamizhans',
+    'og:title': 'First ever social network for UNCC',
     'author': 'admin',
     'og:description': 'Taking TN to the next level',
-    //'og:url': 'http://www.tamizhans.com/',
+    //'og:url': 'https://unccconnect.herokuapp.com/',
     'og:type': 'website',
     'og:app_id': '183663679128594',
-    'og:image': 'http://www.tamizhans.com/images/anbendru_bharathiaar.png',
+    'og:image': 'https://unccconnect.herokuapp.com/images/anbendru_bharathiaar.png',
     'og:image:width': '680',
     'og:image:height': '340',
     // Indexing / Spiders
@@ -93,9 +93,9 @@ var app = angular.module('AtWork', [
     'bingbot': 'all',
     'robots': 'all',
     // OpenGraph
-    'og:site_name': 'Tamizhans Social Network',
+    'og:site_name': 'UNCC Social Network',
     // Twitter
-    'twitter:site': '@tamizhans',
+    'twitter:site': '@unccconnect',
   });
 }]);
 app.controller('AppCtrl', [

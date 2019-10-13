@@ -84,7 +84,7 @@ function startServer() {
     var host = server.address().address
     var port = server.address().port
 
-    console.log('Tamizhans App running at http://%s:%s', host, port);
+    console.log('UNCC App running at http://%s:%s', host, port);
   });
 }
 
@@ -315,7 +315,7 @@ module.exports = {
       res.render('public/bot.html', 
         { 
           img : img, 
-          url : 'https://www.tamizhans.com/', 
+          url : 'https://unccconnect.herokuapp.com/', 
           title : post.title, 
           description : post.short_desc, 
           imageUrl : 'https://bot-social-share.herokuapp.com'+img 

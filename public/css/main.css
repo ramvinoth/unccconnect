@@ -437,7 +437,7 @@ ul.unstyled {
   padding: 24px; }
 
 md-toolbar.md-default-theme {
-  background-color: #1768fd; }
+  background-color: rgba(0,69,37,1); }
 
 md-dialog md-dialog-content {
   padding: 0; }
@@ -769,3 +769,7 @@ blockquote.style2 {
 
 .inline-block {
   display: inline-block; }
+
+.uncc_color{
+  background-color: rgba(0,69,37,1) !important;
+}

@@ -9,7 +9,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['Tamizhans Social Network'],
+  app_name: ['UNCC Social Network'],
   /**
    * Your New Relic license key.
    */

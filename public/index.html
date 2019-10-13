@@ -10,17 +10,8 @@
 
           gtag('config', 'UA-99087345-4');
         </script>
-        <!--
-        <meta property="og:title" content="{{ngMeta.title}}">
-        <meta name="description"  property="og:description" content="{{ngMeta.description}}">
-        <meta property="og:image" content="http://www.tamizhans.com/images/anbendru_bharathiaar.png">
-        <meta property="og:url" content="http://www.tamizhans.com/">
-        
-        <meta property="og:title" content="First ever social network for Tamizhans">
-        <meta property="og:description" content="Taking TN to the next level">
-        -->
         <meta name="fragment" content="!">
-        <link rel="SHORTCUT ICON" href="/images/tamizhans.ico" />
+        <link rel="SHORTCUT ICON" href="/images/uncc.ico" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -76,7 +67,7 @@
                 <md-button class="md-old-style" ng-if="isLoggedIn" ng-click="goHome($event)" title="Home" aria-label="Home">
                   <md-inline-list-icon class="fa fa-globe"></md-inline-list-icon>
                 </md-button>
-                <span hide-sm ng-if="!isLoggedIn">{{systemSettings ? systemSettings.workplace : 'Tamizhaa'}}</span>
+                <span hide-sm ng-if="!isLoggedIn">{{systemSettings ? systemSettings.workplace : 'UNCC Connect'}}</span>
                 <span hide-sm hide-md class="tiny" flex>&nbsp; {{barTitle}}</span>
                 <span flex hide-md></span>
                 <md-button class="md-old-style" ng-if="isLoggedIn && (user.roles.indexOf('admin') !== -1)" href="/settings" title="Settings" aria-label="Settings">

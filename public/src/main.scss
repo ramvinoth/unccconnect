@@ -3,6 +3,7 @@ $linkHoverColor: #333;
 $secondaryColor: #B0BEC5;
 $gray: #eee;
 $blue: #1768fd;
+$uncc_green: rgba(0,69,37,1);
 $darkgray: #bbb;
 $white: #fff;
 $green: #95D055;
@@ -558,7 +559,7 @@ ul.unstyled {
   padding: 24px;
 }
 md-toolbar.md-default-theme {
-  background-color: $blue;
+  background-color: $uncc_green;
 }
 md-dialog {
   md-dialog-content {
@@ -959,4 +960,7 @@ blockquote.style2 {
 }
 .inline-block{
   display: inline-block;
+}
+.uncc_color{
+  background-color: $uncc_green !important;
 }
