@@ -4,6 +4,9 @@
   "description": "A social network for foodies like you and me",
   "repository": "https://github.com/ramvinoth/fivetrippycuisiners",
   "main": "index.js",
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "start": "node index",
     "dev": "node index",
