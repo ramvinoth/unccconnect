@@ -140,6 +140,7 @@ module.exports = function(System) {
     .populate('creator')
     .populate('comments')
     .populate('stream')
+    .populate('attachments')
     .populate('comments.creator')
     .exec(function(err, post) {
       post.comments.push({

@@ -5,7 +5,9 @@
         <p ng-if="selfProfile && !profile.face"><strong>Tip: Click photo to edit</strong></p>
         <div layout="row">
           <!-- TODO: The file select dialog appears even on other users' profiles (no issue for now, they cannot edit the avatar) -->
-          <img src="images/spacer.gif" style="background-image: url('{{profile.face || '/images/user.jpg'}}')" class="face {{!selfProfile?'':'clickable'}}" alt="{{profile.name}}" ng-file-select ng-accept="'image/*'" ng-model="avatar">
+          
+          <img src="images/spacer.gif" style="background-image: url('{{profile.face || '/images/user.jpg'}}')" class="face {{!selfProfile?'':'clickable'}}" alt="{{profile.name}}" ng-show="!selfProfile">
+          <img src="images/spacer.gif" style="background-image: url('{{profile.face || '/images/user.jpg'}}')" class="face {{!selfProfile?'':'clickable'}}" alt="{{profile.name}}" ng-show="selfProfile" ng-file-select ng-accept="'image/*'" ng-model="avatar">
           <div class="unspaced-headings" layout="row" flex>
 
             <div layout="column" flex class="user-details">

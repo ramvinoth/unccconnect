@@ -16,9 +16,9 @@
                 <a ng-if="!item.commentEnabled" ng-click="item.commentEnabled = true" href="#" class="comment"><span>Comment</span></a>
               </span>
               <span ng-if="!item.commentEnabled" >-</span>
-              <span class="view primaryColors">
+              <!--span class="view primaryColors">
                 <a href="/post/{{::item._id}}" class="view"><span>View</span></a>
-              </span>
+              </span-->
               <span ng-if="(item.creator._id === currUserId || isAdmin)">-</span>
               <span class="view primaryColors" ng-if="(item.creator._id === currUserId || isAdmin)">
                 <a ng-click="deleteItem(item)" class="view"><span>Delete</span></a>

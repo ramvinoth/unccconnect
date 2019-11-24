@@ -18,7 +18,7 @@ angular.module('atwork.posts')
         }
       })
       .when('/post/:postId', {
-        templateUrl: '/modules/posts/views/feed.html',
+        templateUrl: '/modules/posts/views/post-single.html',
         controller: 'PostsCtrl',
         resolve: {
           resolvedFeeds: resolvedFeeds({limitComments: false})

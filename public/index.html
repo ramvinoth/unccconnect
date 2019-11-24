@@ -38,7 +38,7 @@
           <button ng-click="toggleSidenav('left')" hide-gt-sm class="menuBtn" ng-if="isLoggedIn">
             <span class="visuallyhidden">Menu</span>
           </button>
-          <span><img src="images/uncc_49.png" width="50px" height="auto"/></span>
+          <span><img src="images/uncc_49.png" ng-click="goHome($event)" width="50px" height="auto"/></span>
           <h1>{{systemSettings ? systemSettings.workplace : 'UNCC Connect'}}</h1>
         </md-toolbar>
         <div class="md-padding sidebar-list" layout-padding>
@@ -51,7 +51,7 @@
             <div ng-include="'/modules/streams/views/streamsList.html'"></div>
 
             <!-- Load user Blogs -->
-            <md-button flex class="btn left-text no-case md-old-style no-bold md-primary ng-scope" style="height: auto; width: 100%;" href="/blog">Blogs</md-button>
+            <md-button flex class="btn left-text no-case md-old-style no-bold md-primary ng-scope" style="height: auto; width: 100%;" href="/blog">Forum</md-button>
         </div>
 
       </md-sidenav>
@@ -73,9 +73,9 @@
                 <md-button class="md-old-style" ng-if="isLoggedIn && (user.roles.indexOf('admin') !== -1)" href="/settings" title="Settings" aria-label="Settings">
                   <md-inline-list-icon class="fa fa-cog"></md-inline-list-icon>
                 </md-button>
-                <md-button class="md-old-style" ng-if="isLoggedIn" title="Invite" aria-label="Invite" ng-click="inviteOthers($event)" ng-controller="InviteCtrl">
+                <!--md-button class="md-old-style" ng-if="isLoggedIn" title="Invite" aria-label="Invite" ng-click="inviteOthers($event)" ng-controller="InviteCtrl">
                   <md-inline-list-icon class="fa fa-envelope"></md-inline-list-icon>
-                </md-button>
+                </md-button-->
                 <div ng-controller="notificationsCtrl">
                   <md-button class="md-old-style" ng-if="isLoggedIn" ng-click="showUserNotifications($event)" title="Alerts" aria-label="Alerts">
                     <md-inline-list-icon class="fa fa-bell notification-count"> <span ng-if="notificationCount">{{notificationCount}} </span></md-inline-list-icon>
