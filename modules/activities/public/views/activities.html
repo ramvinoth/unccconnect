@@ -10,10 +10,10 @@
           <small class="mute">{{::item.created | date:'short'}}</small>
           <span>
             
-            <span ng-if="item.action=='like'"><a href="/post/{{item.post._id}}">Liked</a> this </span>
-            <span ng-if="item.action=='unlike'"><a href="/post/{{item.post._id}}">Removed my like</a> from this </span>
-            <span ng-if="item.action=='comment'"><a href="/post/{{item.post._id}}">Commented</a> on this </span>
-            <span ng-if="item.action=='newpost'"><a href="/post/{{item.post._id}}">Written</a> a new </span>
+            <span ng-if="item.action=='like'">Liked this </span>
+            <span ng-if="item.action=='unlike'">Removed my like from this </span>
+            <span ng-if="item.action=='comment'">Commented on this </span>
+            <span ng-if="item.action=='newpost'">Written a new </span>
             Post.
           </span>
         </p>
