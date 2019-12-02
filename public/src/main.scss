@@ -49,6 +49,9 @@ a {
 }
 
 /** ====== Sidenav Related BEGIN ====== */
+.sidebar-list {
+  overflow: auto;
+}
 .site-sidenav {
   .sidebar-list {
     padding-top: 5px;
