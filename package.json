@@ -18,7 +18,7 @@
   "author": "Ram Vinoth",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.3",
+    "async": "^2.6.4",
     "aws-sdk": "^2.578.0",
     "body-parser": "^1.19.0",
     "bower": "^1.8.8",
